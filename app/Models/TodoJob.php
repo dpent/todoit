@@ -18,11 +18,11 @@ class TodoJob extends Model
         'priority',
     ];
 
-    public function tags(): belongsToMany{
+    public function tag(): belongsToMany{
         return $this->belongsToMany(Tag::class,'tags_todos');
     }
 
-    public function users(): belongsTo{
+    public function user(): belongsTo{
         return $this->belongsTo(User::class,'todos_users');
     }
 }

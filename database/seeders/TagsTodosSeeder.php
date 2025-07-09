@@ -19,7 +19,7 @@ class TagsTodosSeeder extends Seeder
 
         foreach ($todos as $todo) {
             $randomTag= $tags->random(rand(1,2))->pluck('id')->toArray();
-            $todo->tags()->attach($randomTag);
+            $todo->tag()->attach($randomTag);
         }
     }
 }

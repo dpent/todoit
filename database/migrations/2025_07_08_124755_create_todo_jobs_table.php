@@ -13,9 +13,15 @@ return new class extends Migration
     {
         Schema::create('todo_jobs', function (Blueprint $table) {
             $table->id()->primary();
-            $table->timestamp('created_at')->nullable();
             $table->string('title');
             $table->string('priority');
+            $table->unsignedBigInteger('user_id');
+            $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

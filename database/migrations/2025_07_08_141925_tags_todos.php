@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tags_todos', function (Blueprint $table) {
             $table->id()->primary();
-            $table->timestamp('created_at')->nullable();
             $table->unsignedBigInteger('tag_id');
             $table->unsignedBigInteger('todo_job_id');
+            $table->timestamps();
 
             $table->foreign('tag_id')
                 ->references('id')

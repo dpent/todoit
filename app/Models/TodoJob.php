@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 
 class TodoJob extends Model
@@ -16,11 +16,11 @@ class TodoJob extends Model
         'priority',
     ];
 
-    public function tag(): hasMany{
-        return $this->hasMany(Tag::class);
+    public function tags(): belongsToMany{
+        return $this->belongsToMany(Tag::class,'tags_todos');
     }
 
-    public function user(): HasOne{
-        return $this->hasOne(User::class);
+    public function user(): belongsTo{
+        return $this->belongsTo(User::class,'todos_users');
     }
 }

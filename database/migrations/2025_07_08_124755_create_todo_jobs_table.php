@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('todo_jobs', function (Blueprint $table) {
             $table->id()->primary();
-            $table->timestamp('created_at')->nullable();
             $table->string('title');
             $table->string('priority');
+            $table->timestamps();
         });
     }
 

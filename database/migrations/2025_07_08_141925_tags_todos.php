@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tags_todos', function (Blueprint $table) {
             $table->id()->primary();
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
             $table->unsignedBigInteger('tag_id');
             $table->unsignedBigInteger('todo_job_id');
 

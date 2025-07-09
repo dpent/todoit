@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Tag extends Model
 {
-    protected $fillable = [
+    protected $guarded=[
         'title'
     ];
 

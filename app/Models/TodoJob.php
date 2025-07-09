@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Notifications\Notifiable;
 
+/**
+ * @method static \Illuminate\Database\Eloquent\Builder|static create(array $attributes = [])
+ * @method static \Illuminate\Database\Eloquent\Model|static findOrFail(mixed $id, array $columns = ['*'])
+ */
+
+
 class TodoJob extends Model
 {
     use HasFactory, Notifiable;

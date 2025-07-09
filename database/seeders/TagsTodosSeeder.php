@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Tag;
 use App\Models\TodoJob;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TagsTodosSeeder extends Seeder
@@ -19,7 +18,7 @@ class TagsTodosSeeder extends Seeder
 
         foreach ($todos as $todo) {
             $randomTag= $tags->random(rand(1,2))->pluck('id')->toArray();
-            $todo->tag()->attach($randomTag);
+            $todo->tags()->attach($randomTag);
         }
     }
 }

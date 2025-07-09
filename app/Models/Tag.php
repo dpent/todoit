@@ -15,7 +15,7 @@ class Tag extends Model
         'title'
     ];
 
-    public function todo(): belongsToMany{
+    public function todos(): belongsToMany{
         return $this->belongsToMany(TodoJob::class,'tags_todos');
     }
 }

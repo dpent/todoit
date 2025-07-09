@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 
 class TodoJob extends Model
@@ -18,7 +16,7 @@ class TodoJob extends Model
         'priority',
     ];
 
-    public function tag(): belongsToMany{
+    public function tags(): belongsToMany{
         return $this->belongsToMany(Tag::class,'tags_todos');
     }
 

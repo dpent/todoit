@@ -50,7 +50,7 @@ class User extends Authenticatable
         ];
     }
 
-    public function todo(): HasMany{
+    public function todos(): HasMany{
         return $this->hasMany(TodoJob::class,'todos_users');
     }
 }

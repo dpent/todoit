@@ -15,7 +15,13 @@ return new class extends Migration
             $table->id()->primary();
             $table->string('title');
             $table->string('priority');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
         });
     }
 

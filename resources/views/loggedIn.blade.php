@@ -1,0 +1,3 @@
+<x-loggedLayout>
+
+</x-loggedLayout>

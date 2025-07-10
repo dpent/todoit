@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class UserService{
 
@@ -11,8 +12,8 @@ class UserService{
     public function getAll():Collection{
         try{
             return User::all();
-        }catch (\Exception $exception){
-            echo "Looks like something went wrong";
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
             return new Collection(["Error"]);
         }
     }
@@ -20,8 +21,8 @@ class UserService{
     public function store(array $data):User{
         try{
             return User::create($data);
-        }catch (\Exception $exception){
-            echo "Looks like something went wrong";
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
             return new User(["Error1"]);
         }
     }
@@ -29,8 +30,8 @@ class UserService{
     public function getById(int $id):User{
         try{
             return User::findOrFail($id);
-        }catch (\Exception $exception){
-            echo "Looks like something went wrong";
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
             return new User(["Error2"]);
         }
 
@@ -42,8 +43,8 @@ class UserService{
             $user = User::findOrFail($id);
             $user->update($data);
             return $user;
-        }catch (\Exception $exception){
-            echo "Looks like something went wrong";
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
             return new User(["Error3"]);
         }
     }
@@ -54,8 +55,8 @@ class UserService{
             $user = User::findOrFail($id);
             $user->delete();
             return true;
-        }catch (\Exception $exception){
-            echo "Looks like something went wrong";
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
             return false;
         }
     }

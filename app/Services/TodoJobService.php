@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\TodoJob;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class TodoJobService{
 
@@ -11,7 +12,7 @@ class TodoJobService{
         try{
             return TodoJob::all();
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return new Collection(["Error"]);
         }
 
@@ -21,7 +22,7 @@ class TodoJobService{
         try{
             return TodoJob::create($data);
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return new TodoJob(["Error1"]);
         }
     }
@@ -30,7 +31,7 @@ class TodoJobService{
         try{
             return TodoJob::findOrFail($id);
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return new TodoJob(["Error2"]);
         }
     }
@@ -42,7 +43,7 @@ class TodoJobService{
             $todoJob->update($data);
             return $todoJob;
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return new TodoJob(["Error3"]);
         }
     }
@@ -53,7 +54,7 @@ class TodoJobService{
             $todoJob->delete();
             return true;
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return false;
         }
     }

@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Tag;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class TagService{
 
@@ -12,7 +13,7 @@ class TagService{
         try{
             return Tag::all();
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return new Collection(["Error"]);
         }
     }
@@ -21,7 +22,7 @@ class TagService{
         try{
             return Tag::create($data);
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return new Tag(["Error1"]);
         }
     }
@@ -30,7 +31,7 @@ class TagService{
         try{
             return Tag::findOrFail($id);
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return new Tag(["Error2"]);
         }
     }
@@ -42,7 +43,7 @@ class TagService{
             $user->update($data);
             return $user;
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return new Tag(["Error3"]);
         }
     }
@@ -54,7 +55,7 @@ class TagService{
             $user->delete();
             return true;
         }catch (\Exception $e){
-            echo "Something went wrong";
+            Log::error($e->getMessage());
             return false;
         }
     }

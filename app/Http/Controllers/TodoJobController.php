@@ -14,7 +14,7 @@ class TodoJobController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():JsonResponse
+    public function index()
     {
         $todos=$this->todoJobService->getAll();
         return response()->json($todos);
@@ -53,5 +53,13 @@ class TodoJobController extends Controller
     {
         $this->todoJobService->deleteById($id);
         return response()->json("Todo with id $id has been deleted");
+    }
+
+    public function getByUserId(){
+        $data=$this->todoJobService->getByUserId();
+        return view('todoList',[
+            'todos'=>$data['todos'],
+            'tags'=>$data['tags']
+        ]);
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Tag;
 use App\Models\TodoJob;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class TodoJobService{
@@ -59,4 +61,22 @@ class TodoJobService{
         }
     }
 
+    public function getByUserId(){
+        try{
+            $todos=TodoJob::where('user_id',Auth::id())->get();
+            $tags=[];
+            foreach ($todos as $todo){
+                $tagIds= $todo->tags()->pluck('tag_id')->toArray();
+                $tags=Tag::whereIn('id',$tagIds)->get()->toArray();
+            }
+
+            return view('todoList',[
+                'todos'=>$todos,
+                'tags'=>$tags]);
+
+        }catch (\Exception $e){
+            Log::error($e->getMessage());
+            return new TodoJob(["Error4"]);
+        }
+    }
 }

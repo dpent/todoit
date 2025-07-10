@@ -44,6 +44,9 @@
             flex-direction: column;
         }
 
+        input[type="text"],
+        input[type="text"],
+        input[type="text"],
         input[type="email"],
         input[type="password"] {
             padding: 12px 15px;
@@ -93,7 +96,7 @@
 
     {{$slot}}
     <div class="icon">🔐</div>
-    <form action="/login" method="POST">
+    <form action="/signup" method="POST">
         @csrf
 
         @if ($errors->any())
@@ -104,6 +107,9 @@
             </div>
         @endif
 
+        <input type="text" name="first_name" placeholder="First name" value="{{ old('first_name') }}" required>
+        <input type="text" name="last_name" placeholder="Last name" value="{{ old('last_name') }}" required>
+        <input type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
         <input type="email" name="email" placeholder="Email address" value="{{ old('email') }}" required>
         <input type="password" name="password" placeholder="Password" required>
         <button type="submit">Submit</button>

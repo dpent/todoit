@@ -8,27 +8,54 @@ use Illuminate\Support\Collection;
 class TodoJobService{
 
     public function getAll():Collection{
-        return TodoJob::all();
+        try{
+            return TodoJob::all();
+        }catch (\Exception $e){
+            echo "Something went wrong";
+            return new Collection(["Error"]);
+        }
+
     }
 
     public function store(array $data):TodoJob{
-        return TodoJob::create($data);
+        try{
+            return TodoJob::create($data);
+        }catch (\Exception $e){
+            echo "Something went wrong";
+            return new TodoJob(["Error1"]);
+        }
     }
 
     public function getById(int $id):TodoJob{
-        return TodoJob::findOrFail($id);
+        try{
+            return TodoJob::findOrFail($id);
+        }catch (\Exception $e){
+            echo "Something went wrong";
+            return new TodoJob(["Error2"]);
+        }
     }
 
     public function editById(int $id,array $data):TodoJob{
-        $todoJob = TodoJob::findOrFail($id);
-        $todoJob->update($data);
-        return $todoJob;
+
+        try{
+            $todoJob = TodoJob::findOrFail($id);
+            $todoJob->update($data);
+            return $todoJob;
+        }catch (\Exception $e){
+            echo "Something went wrong";
+            return new TodoJob(["Error3"]);
+        }
     }
 
     public function deleteById(int $id):bool{
-        $todoJob = TodoJob::findOrFail($id);
-        $todoJob->delete();
-        return true;
+        try{
+            $todoJob = TodoJob::findOrFail($id);
+            $todoJob->delete();
+            return true;
+        }catch (\Exception $e){
+            echo "Something went wrong";
+            return false;
+        }
     }
 
 }

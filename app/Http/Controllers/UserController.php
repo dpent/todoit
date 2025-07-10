@@ -23,14 +23,6 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request):JsonResponse
@@ -55,14 +47,6 @@ class UserController extends Controller
     {
         $user=$this->userService->editById($id, $data);
         return response()->json($user);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
     }
 
     /**

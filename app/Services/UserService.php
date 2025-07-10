@@ -9,27 +9,55 @@ class UserService{
 
 
     public function getAll():Collection{
-        return User::all();
+        try{
+            return User::all();
+        }catch (\Exception $exception){
+            echo "Looks like something went wrong";
+            return new Collection(["Error"]);
+        }
     }
 
     public function store(array $data):User{
-        return User::create($data);
+        try{
+            return User::create($data);
+        }catch (\Exception $exception){
+            echo "Looks like something went wrong";
+            return new User(["Error1"]);
+        }
     }
 
     public function getById(int $id):User{
-        return User::findOrFail($id);
+        try{
+            return User::findOrFail($id);
+        }catch (\Exception $exception){
+            echo "Looks like something went wrong";
+            return new User(["Error2"]);
+        }
+
     }
 
     public function editById(int $id,array $data):User{
-        $user = User::findOrFail($id);
-        $user->update($data);
-        return $user;
+
+        try{
+            $user = User::findOrFail($id);
+            $user->update($data);
+            return $user;
+        }catch (\Exception $exception){
+            echo "Looks like something went wrong";
+            return new User(["Error3"]);
+        }
     }
 
     public function deleteById(int $id):bool{
-        $user = User::findOrFail($id);
-        $user->delete();
-        return true;
+
+        try {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return true;
+        }catch (\Exception $exception){
+            echo "Looks like something went wrong";
+            return false;
+        }
     }
 
 

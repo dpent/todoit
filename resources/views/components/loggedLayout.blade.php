@@ -58,7 +58,13 @@
 
     <a href="/todoList" class="button">View My To-Do List</a>
     <a href="/profile" class="button">View Profile</a>
-    <a href="/" class="button">Log out</a>
+
+    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+        @csrf
+        <button type="submit" class="button">
+            Log out
+        </button>
+    </form>
 </div>
 </body>
 </html>

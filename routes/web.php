@@ -15,6 +15,8 @@ Route::get('/login', function () {
 
 Route::post('/login',[LoginController::class,'authenticate']);
 
+Route::post('/logout',[LoginController::class,'logout'])->name('logout');
+
 Route::get('/todoList', [TodoJobController::class, 'getByUserId']);
 
 Route::get('/profile', function () {

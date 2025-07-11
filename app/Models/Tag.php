@@ -12,6 +12,13 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Model|static findOrFail(mixed $id, array $columns = ['*'])
  */
 
+/*  Tags can be attached to Todos
+ *  so that a more personalised
+ *  experience is produced
+ *  A todo can have multiple tags
+ *  A tag can be attached to multiple todos
+ */
+
 class Tag extends Model
 {
 
@@ -20,6 +27,7 @@ class Tag extends Model
         'title'
     ];
 
+    //Todo relation
     public function todos(): belongsToMany{
         return $this->belongsToMany(TodoJob::class,'tags_todos');
     }

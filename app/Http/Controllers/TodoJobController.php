@@ -7,14 +7,15 @@ use App\Services\TodoJobService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+//Basic controller for getting TodoJob data
 class TodoJobController extends Controller
 {
+    //We need a service for executing queries
     public function __construct(TodoJobService $todoJobService){
         $this->todoJobService = $todoJobService;
     }
-    /**
-     * Display a listing of the resource.
-     */
+
+    //Get all TodoJobs
     public function index()
     {
         $todos=$this->todoJobService->getAll();
@@ -56,6 +57,8 @@ class TodoJobController extends Controller
         return response()->json("Todo with id $id has been deleted");
     }
 
+    //Get all TodoJobs that have user_id equal to the
+    // authenticated user's id
     public function getByUserId(){
         $data=$this->todoJobService->getByUserId();
         return view('todoList',[
@@ -64,6 +67,7 @@ class TodoJobController extends Controller
         ]);
     }
 
+    //Create a new TodoJob and store it in the db
     public function createTodo(Request $request){
 
         return $this->todoJobService->createTodo($request);

@@ -9,6 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    //Creates a pivot table needed for connecting
+    //TodoJobs to Tags
+
     public function up(): void
     {
         Schema::create('tags_todos', function (Blueprint $table) {
@@ -17,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger('todo_job_id');
             $table->timestamps();
 
-            $table->foreign('tag_id')
-                ->references('id')
+            $table->foreign('tag_id') //Foreign keys needed
+                ->references('id') //for data recovery
                 ->on('tags')
                 ->onDelete('cascade');
             $table->foreign('todo_job_id')

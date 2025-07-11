@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
+
+//Creates User data to be saved to a db
 class UserFactory extends Factory
 {
 
@@ -26,7 +28,7 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
-        return [
+        return [ //Creates all data needed to create a fake user
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'username' => $this->faker->userName(),

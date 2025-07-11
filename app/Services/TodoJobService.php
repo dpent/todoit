@@ -9,8 +9,11 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
+//This service executes/implements all controller functions
+//Controller communicates with the user and the service with the db
 class TodoJobService{
 
+    //Get all TodoJobs
     public function getAll():Collection{
         try{
             return TodoJob::all();
@@ -21,6 +24,7 @@ class TodoJobService{
 
     }
 
+    //Save a new TodoJob
     public function store(array $data):TodoJob{
         try{
             return TodoJob::create($data);
@@ -30,6 +34,7 @@ class TodoJobService{
         }
     }
 
+    //Get a TodoJob based on an id
     public function getById(int $id):TodoJob{
         try{
             return TodoJob::findOrFail($id);
@@ -39,6 +44,7 @@ class TodoJobService{
         }
     }
 
+    //Edit a TodoJob based on an id
     public function editById(int $id,array $data):TodoJob{
 
         try{
@@ -51,6 +57,7 @@ class TodoJobService{
         }
     }
 
+    //Delete a TodoJob based on an id
     public function deleteById(int $id):bool{
         try{
             $todoJob = TodoJob::findOrFail($id);
@@ -62,6 +69,9 @@ class TodoJobService{
         }
     }
 
+
+    //Get all TodoJobs and their Tags that belong to the
+    //authenticated user
     public function getByUserId(){
         try{
             $todos=TodoJob::where('user_id',Auth::id())->get();
@@ -81,6 +91,7 @@ class TodoJobService{
         }
     }
 
+    //Create a new TodoJob and save it after validating
     public function createTodo(Request $request){
         $request->validate([
             'title' => ['required', 'string'],

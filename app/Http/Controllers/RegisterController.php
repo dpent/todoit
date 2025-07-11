@@ -11,10 +11,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+//Handles user registration/signup
+
 class RegisterController extends Controller
 {
 
-
+    //Validates credentials and saves user to the db
     public function register(Request $request) : RedirectResponse{
         $request->validate([
             'first_name' => ['required', 'string', 'max:255'],
@@ -31,7 +33,7 @@ class RegisterController extends Controller
             'email'=>$request->email,
             'password'=>Hash::make($request->password),
         ]);
-
+        //User is logged in after registering and redirected
         Auth::login($user);
 
         return redirect('/loggedIn');

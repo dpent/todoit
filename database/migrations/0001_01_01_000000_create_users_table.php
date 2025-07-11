@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    //Creates user table, password reset tokens table and sessions table
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {

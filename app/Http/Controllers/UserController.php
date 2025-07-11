@@ -7,15 +7,16 @@ use App\Services\UserService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+//Basic controller for getting User data
 class UserController extends Controller
 {
 
+    //We need a service for executing queries
     public function __construct(UserService $userService){
         $this->userService = $userService;
     }
-    /**
-     * Display a listing of the resource.
-     */
+
+    //Get all Users
     public function index():JsonResponse
     {
         $users=$this->userService->getAll();

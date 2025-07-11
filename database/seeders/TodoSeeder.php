@@ -11,6 +11,7 @@ class TodoSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+    //Calls the TodoJob factory
     public function run(): void
     {
         $users = User::all();

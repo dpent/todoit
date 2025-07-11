@@ -1,9 +1,7 @@
-<x-layout>
-    <h1>This is the Profile page</h1>
+<x-profileLayout>
+    <h1>Profile</h1>
 
-    <a href="/">Home</a>
-    <a href="/profile">Profile</a>
+    <a href="/loggedIn">Back</a>
     <a href="/todoList">TODO</a>
-    <a href="/login">Login</a>
-</x-layout>
+</x-profileLayout>
 

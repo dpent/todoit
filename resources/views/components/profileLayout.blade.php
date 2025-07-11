@@ -54,11 +54,11 @@
 </head>
 <body>
 <div class="container">
-    <h1>Welcome, {{ Auth::user()->first_name }}!</h1>
-
-    <a href="/todoList" class="button">View My To-Do List</a>
-    <a href="/profile" class="button">View Profile</a>
-    <a href="/" class="button">Log out</a>
+    {{$slot}}
+    <h3>First name: {{Auth::user()->first_name}}</h3>
+    <h3>Last name: {{Auth::user()->last_name}}</h3>
+    <h3>Username: {{Auth::user()->username}}</h3>
+    <h3>Email address: {{Auth::user()->email}}</h3>
 </div>
 </body>
 </html>

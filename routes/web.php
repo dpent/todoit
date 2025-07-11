@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TodoJobController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,9 +15,7 @@ Route::get('/login', function () {
 
 Route::post('/login',[LoginController::class,'authenticate']);
 
-Route::get('/todoList', function () {
-    return view('todoList');
-});
+Route::get('/todoList/', [TodoJobController::class, 'getByUserId']);
 
 Route::get('/profile', function () {
     return view('profile');

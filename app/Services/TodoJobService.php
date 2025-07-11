@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Tag;
 use App\Models\TodoJob;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -78,5 +79,21 @@ class TodoJobService{
             Log::error($e->getMessage());
             return new TodoJob(["Error4"]);
         }
+    }
+
+    public function createTodo(Request $request){
+        $request->validate([
+            'title' => ['required', 'string'],
+            'priority' => ['required', 'numeric'],
+        ]);
+
+        $todo=TodoJob::create([
+            'title'=>$request->title,
+            'priority'=>$request->priority,
+            'user_id'=>Auth::id()
+        ]);
+
+        //return view('/todoList');
+        return $this->getByUserId();
     }
 }

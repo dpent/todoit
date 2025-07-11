@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TodoJob;
 use App\Services\TodoJobService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -61,5 +62,10 @@ class TodoJobController extends Controller
             'todos'=>$data['todos'],
             'tags'=>$data['tags']
         ]);
+    }
+
+    public function createTodo(Request $request){
+
+        return $this->todoJobService->createTodo($request);
     }
 }

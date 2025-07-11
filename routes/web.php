@@ -15,7 +15,7 @@ Route::get('/login', function () {
 
 Route::post('/login',[LoginController::class,'authenticate']);
 
-Route::get('/todoList/', [TodoJobController::class, 'getByUserId']);
+Route::get('/todoList', [TodoJobController::class, 'getByUserId']);
 
 Route::get('/profile', function () {
     return view('profile');
@@ -30,3 +30,10 @@ Route::get('/signup', function () {
 });
 
 Route::post('/signup',[RegisterController::class,'register']);
+
+Route::get('/createTodo',function (){
+    return view('createTodo');
+});
+
+Route::post('/createTodo',[TodoJobController::class,'createTodo'])
+->middleware('auth');

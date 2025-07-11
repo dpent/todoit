@@ -55,22 +55,27 @@
 <body>
 <div class="container">
     <h1>{{Auth::user()->first_name}}'s Todo list</h1>
+    <a href="/createTodo">+</a>
 
     <ul>
         @if ($todos->isEmpty())
             <p style="text-align: center;">No todos found.</p>
         @else
             @foreach ($todos as $todo)
-                @foreach($tags[$loop->iteration] as $tag)
-                    <li>
-                        <strong>{{$loop->iteration}} {{$todo->created_at->format('M,d,Y')}}: {{$todo->title}} {{$todo->priority}}</strong>
-                    </li>
-                    @foreach($tag as $t)
-                        <li>
-                            <p>{{$t}}</p>
-                        </li>
+                <li>
+                    <strong>{{$loop->index}} {{$todo->created_at->format('M,d,Y')}}: {{$todo->title}} {{$todo->priority}}</strong>
+                </li>
+                @if(!empty($tags[$loop->index]))
+                    @foreach($tags[$loop->index] as $tag)
+                        @if(!empty($tag))
+                                @foreach($tag as $t)
+                                    <li>
+                                        <p>{{$t}}</p>
+                                    </li>
+                                @endforeach
+                        @endif
                     @endforeach
-                @endforeach
+                @endif
             @endforeach
         @endif
     </ul>

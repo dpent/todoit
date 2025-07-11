@@ -20,6 +20,7 @@ class TodoJob extends Model
     protected $fillable = [
         'title',
         'priority',
+        'user_id',
     ];
 
     public function tags(): belongsToMany{

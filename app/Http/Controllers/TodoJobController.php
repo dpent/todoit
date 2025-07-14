@@ -59,6 +59,15 @@ class TodoJobController extends Controller
 
     //Get all TodoJobs that have user_id equal to the
     // authenticated user's id
+
+    /**
+     * @OA\Get(
+     *     path="/todoList",
+     *     summary="Gets all todo tasks linked to the authenticated user",
+     *     tags={"todos for auth user"},
+     *     @OA\Response(response=200, description="List of todos")
+     * )
+     */
     public function getByUserId(){
         $data=$this->todoJobService->getByUserId();
         return view('todoList',[
@@ -68,6 +77,24 @@ class TodoJobController extends Controller
     }
 
     //Create a new TodoJob and store it in the db
+
+    /**
+     * @OA\Post(
+     *     path="/createTodo",
+     *     summary="Creates a todo that is linked to the authenticated user",
+     *     tags={"todo creation"},
+     *     @OA\RequestBody(
+     *           required=true,
+     *           @OA\JsonContent(
+     *               required={"title", "priority"},
+     *               @OA\Property(property="title", type="string", format="text", example="Cook dinner"),
+     *               @OA\Property(property="priority", type="integer", format="number", example="5")
+     *           )s
+     *       ),
+     *     @OA\Response(response=200, description="Todo is created"),
+     *     @OA\Response(response=400, description="Fill in all boxes")
+     * )
+     */
     public function createTodo(Request $request){
 
         return $this->todoJobService->createTodo($request);

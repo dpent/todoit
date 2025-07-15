@@ -89,7 +89,7 @@ class TodoJobController extends Controller
      *               required={"title", "priority"},
      *               @OA\Property(property="title", type="string", format="text", example="Cook dinner"),
      *               @OA\Property(property="priority", type="integer", format="number", example="5")
-     *           )s
+     *           )
      *       ),
      *     @OA\Response(response=200, description="Todo is created"),
      *     @OA\Response(response=400, description="Fill in all boxes")
@@ -99,4 +99,76 @@ class TodoJobController extends Controller
 
         return $this->todoJobService->createTodo($request);
     }
+
+    /**
+     * @OA\Get(
+     *     path="/",
+     *     summary="Home page",
+     *     description="Redirects to the home page",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response"
+     *     )
+     * )
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/login",
+     *     summary="Login page",
+     *     description="Contains the page needed for logging in",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response"
+     *     )
+     * )
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/profile",
+     *     summary="Profile info page",
+     *     description="Returns all the necessary user info",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response"
+     *     )
+     * )
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/loggedIn",
+     *     summary="Page after being authenticated",
+     *     description="Shows the authenticated user the dashboard. The user can see the todoList and profile details",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response"
+     *     )
+     * )
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/signup",
+     *     summary="Gets the page were the guest can create a new account",
+     *     description="This page contains all the fields that the user must fill to create an account",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response"
+     *     )
+     * )
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/createTodo",
+     *     summary="Create todo task page",
+     *     description="This page contains all the fields that the user must fill to create a todo task",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Success response"
+     *     )
+     * )
+     */
 }

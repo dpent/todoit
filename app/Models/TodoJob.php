@@ -20,6 +20,36 @@ use Illuminate\Notifications\Notifiable;
  * A todo can have many tags
  */
 
+
+/**
+ * @OA\Schema(
+ *     schema="TodoJob",
+ *     type="object",
+ *     title="TodoJob",
+ *     description="Todo model used to keep track of todo tasks",
+ *     @OA\Property(
+ *         property="title",
+ *         type="string",
+ *         format="text",
+ *         example="Cook dinner",
+ *         description="The name of a todo task"
+ *     ),
+ *     @OA\Property(
+ *          property="priority",
+ *          type="integer",
+ *          format="int32",
+ *          example=5,
+ *          description="How important this task is"
+ *      ),
+ *     @OA\Property(
+ *          property="user_id",
+ *          type="integer",
+ *          format="int32",
+ *          example=100,
+ *          description="The user_id of the user this task belongs to"
+ *      ),
+ * )
+ */
 class TodoJob extends Model
 {
     use HasFactory, Notifiable;

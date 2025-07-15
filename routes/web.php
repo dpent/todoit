@@ -49,3 +49,4 @@ Route::get('/createTodo',function (){
 //Sends TodoJob data for creation
 Route::post('/createTodo',[TodoJobController::class,'createTodo'])
 ->middleware('auth');
+

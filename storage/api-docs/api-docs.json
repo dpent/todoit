@@ -228,6 +228,85 @@
             }
         }
     },
+    "components": {
+        "schemas": {
+            "Tag": {
+                "title": "Tag",
+                "description": "Tag model used to personalise and categorise todo tasks",
+                "properties": {
+                    "title": {
+                        "description": "The name of a tag",
+                        "type": "string",
+                        "format": "text",
+                        "example": "Work-related"
+                    }
+                },
+                "type": "object"
+            },
+            "TodoJob": {
+                "title": "TodoJob",
+                "description": "Todo model used to keep track of todo tasks",
+                "properties": {
+                    "title": {
+                        "description": "The name of a todo task",
+                        "type": "string",
+                        "format": "text",
+                        "example": "Cook dinner"
+                    },
+                    "priority": {
+                        "description": "How important this task is",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 5
+                    },
+                    "user_id": {
+                        "description": "The user_id of the user this task belongs to",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 100
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User model",
+                "properties": {
+                    "first_name": {
+                        "description": "The user's first name",
+                        "type": "string",
+                        "format": "text",
+                        "example": "John"
+                    },
+                    "last_name": {
+                        "description": "The user's last name",
+                        "type": "string",
+                        "format": "text",
+                        "example": "Doe"
+                    },
+                    "username": {
+                        "description": "The username chosen when the account was created",
+                        "type": "string",
+                        "format": "text",
+                        "example": "JDoe4342"
+                    },
+                    "email": {
+                        "description": "The email given when the account was created",
+                        "type": "string",
+                        "format": "email",
+                        "example": "JDoe@example.com"
+                    },
+                    "password": {
+                        "description": "Password chosen when the account was created. The database hashes the value before saving it",
+                        "type": "string",
+                        "format": "text",
+                        "example": "Secret123"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
     "tags": [
         {
             "name": "Authentication",

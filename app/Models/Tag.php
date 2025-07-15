@@ -19,6 +19,23 @@ use Illuminate\Notifications\Notifiable;
  *  A tag can be attached to multiple todos
  */
 
+
+/**
+ * @OA\Schema(
+ *     schema="Tag",
+ *     type="object",
+ *     title="Tag",
+ *     description="Tag model used to personalise and categorise todo tasks",
+ *     @OA\Property(
+ *         property="title",
+ *         type="string",
+ *         format="text",
+ *         example="Work-related",
+ *         description="The name of a tag"
+ *     )
+ * )
+ */
+
 class Tag extends Model
 {
 

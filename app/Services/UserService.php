@@ -5,10 +5,11 @@ namespace App\Services;
 use App\Models\User;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
-
+//This service executes/implements all controller functions
+//Controller communicates with the user and the service with the db
 class UserService{
 
-
+    //Get all Users
     public function getAll():Collection{
         try{
             return User::all();
@@ -18,6 +19,7 @@ class UserService{
         }
     }
 
+    //Save a user to the db
     public function store(array $data):User{
         try{
             return User::create($data);
@@ -27,6 +29,7 @@ class UserService{
         }
     }
 
+    //Get a user based on an id
     public function getById(int $id):User{
         try{
             return User::findOrFail($id);
@@ -37,6 +40,7 @@ class UserService{
 
     }
 
+    //Edit a user based on an id
     public function editById(int $id,array $data):User{
 
         try{
@@ -49,6 +53,7 @@ class UserService{
         }
     }
 
+    //Delete a user based on an id
     public function deleteById(int $id):bool{
 
         try {

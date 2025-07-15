@@ -10,6 +10,9 @@ class DatabaseSeeder extends Seeder
     /**
      * Seed the application's database.
      */
+
+    //This is what is called when seeding. It in turn calls
+    //the other seeders
     public function run(): void
     {
         $this->call([

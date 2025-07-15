@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+    //Creates a table that stores Tags
     public function up(): void
     {
         Schema::create('tags', function (Blueprint $table) {

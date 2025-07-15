@@ -6,9 +6,11 @@ use App\Models\Tag;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
+//This service executes/implements all controller functions
+//Controller communicates with the user and the service with the db
 class TagService{
 
-
+    //Get all Tags
     public function getAll():Collection{
         try{
             return Tag::all();
@@ -18,6 +20,7 @@ class TagService{
         }
     }
 
+    //Save a new Tag
     public function store(array $data):Tag{
         try{
             return Tag::create($data);
@@ -27,6 +30,7 @@ class TagService{
         }
     }
 
+    //Get a Tag based on a Tag id
     public function getById(int $id):Tag{
         try{
             return Tag::findOrFail($id);
@@ -36,6 +40,7 @@ class TagService{
         }
     }
 
+    //Edit a Tag based on id
     public function editById(int $id,array $data):Tag{
 
         try{
@@ -48,6 +53,7 @@ class TagService{
         }
     }
 
+    //Delete based on id
     public function deleteById(int $id):bool{
 
         try{

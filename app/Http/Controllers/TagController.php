@@ -6,15 +6,16 @@ use App\Services\TagService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
+//Basic controller for getting Tag data
 class TagController extends Controller
 {
 
+    //We need a service for executing queries
     public function __construct(TagService $tagService){
         $this->tagService = $tagService;
     }
-    /**
-     * Display a listing of the resource.
-     */
+
+    //Get all Tags
     public function index():JsonResponse
     {
         $tags=$this->tagService->getAll();

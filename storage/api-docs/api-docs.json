@@ -1,0 +1,332 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "todoit",
+        "description": "API documentation for todoit web app",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://my-default-host.com",
+            "description": "Main API server"
+        }
+    ],
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Authenticate user and start a session",
+                "operationId": "loginUser",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "secret123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Redirect to intended route after successful login"
+                    },
+                    "422": {
+                        "description": "The provided credentials do not match our records.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The provided credentials do not match our records."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "logout"
+                ],
+                "summary": "Logout authenticated user and invalidate session",
+                "operationId": "logoutUser",
+                "requestBody": {},
+                "responses": {
+                    "200": {
+                        "description": "Redirect to intended route after successful login"
+                    },
+                    "422": {
+                        "description": "Counldn't log user out",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "User was not logged out. Try again."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sinup": {
+            "post": {
+                "tags": [
+                    "Register new user"
+                ],
+                "summary": "Create a new user and save it in the database",
+                "operationId": "register",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "first_name,last_name,username,email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "John"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Doe"
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "jDoe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@example.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "secret123"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Redirect to intended route after successful signup"
+                    },
+                    "422": {
+                        "description": "The credentials provided are not valid",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The provided credentials are not valid"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/todoList": {
+            "get": {
+                "tags": [
+                    "todos for auth user"
+                ],
+                "summary": "Gets all todo tasks linked to the authenticated user",
+                "operationId": "a1bfe3a2ccb11ab4cbd0b311ec4f8a86",
+                "responses": {
+                    "200": {
+                        "description": "List of todos"
+                    }
+                }
+            }
+        },
+        "/createTodo": {
+            "post": {
+                "tags": [
+                    "todo creation"
+                ],
+                "summary": "Creates a todo that is linked to the authenticated user",
+                "operationId": "015f1edd156f620d9d5f9075c60834a9",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "priority"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "Cook dinner"
+                                    },
+                                    "priority": {
+                                        "type": "integer",
+                                        "format": "number",
+                                        "example": "5"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Todo is created"
+                    },
+                    "400": {
+                        "description": "Fill in all boxes"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Tag": {
+                "title": "Tag",
+                "description": "Tag model used to personalise and categorise todo tasks",
+                "properties": {
+                    "title": {
+                        "description": "The name of a tag",
+                        "type": "string",
+                        "format": "text",
+                        "example": "Work-related"
+                    }
+                },
+                "type": "object"
+            },
+            "TodoJob": {
+                "title": "TodoJob",
+                "description": "Todo model used to keep track of todo tasks",
+                "properties": {
+                    "title": {
+                        "description": "The name of a todo task",
+                        "type": "string",
+                        "format": "text",
+                        "example": "Cook dinner"
+                    },
+                    "priority": {
+                        "description": "How important this task is",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 5
+                    },
+                    "user_id": {
+                        "description": "The user_id of the user this task belongs to",
+                        "type": "integer",
+                        "format": "int32",
+                        "example": 100
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User model",
+                "properties": {
+                    "first_name": {
+                        "description": "The user's first name",
+                        "type": "string",
+                        "format": "text",
+                        "example": "John"
+                    },
+                    "last_name": {
+                        "description": "The user's last name",
+                        "type": "string",
+                        "format": "text",
+                        "example": "Doe"
+                    },
+                    "username": {
+                        "description": "The username chosen when the account was created",
+                        "type": "string",
+                        "format": "text",
+                        "example": "JDoe4342"
+                    },
+                    "email": {
+                        "description": "The email given when the account was created",
+                        "type": "string",
+                        "format": "email",
+                        "example": "JDoe@example.com"
+                    },
+                    "password": {
+                        "description": "Password chosen when the account was created. The database hashes the value before saving it",
+                        "type": "string",
+                        "format": "text",
+                        "example": "Secret123"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "logout",
+            "description": "logout"
+        },
+        {
+            "name": "Register new user",
+            "description": "Register new user"
+        },
+        {
+            "name": "todos for auth user",
+            "description": "todos for auth user"
+        },
+        {
+            "name": "todo creation",
+            "description": "todo creation"
+        }
+    ]
+}

@@ -9,6 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+    //Creates a table that stores all TodoJobs
+
     public function up(): void
     {
         Schema::create('todo_jobs', function (Blueprint $table) {
@@ -18,8 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('user_id')
-                ->references('id')
+            $table->foreign('user_id') //Needed for user based
+                ->references('id')  //queries
                 ->on('users')
                 ->onDelete('cascade');
         });

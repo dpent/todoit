@@ -26,7 +26,8 @@ use Illuminate\Notifications\Notifiable;
  *     schema="TodoJob",
  *     type="object",
  *     title="TodoJob",
- *     description="Todo model used to keep track of todo tasks",
+ *     description="Todo model used to keep track of todo tasks
+ *      IMPORTANT: deleting a todoJob deletes all Tags assosiated with it",
  *     @OA\Property(
  *         property="title",
  *         type="string",
